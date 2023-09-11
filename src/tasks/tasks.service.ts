@@ -11,8 +11,7 @@ export class TasksService {
   ) {}
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
-    const createdTask = await this.taskModel.create(createTaskDto);
-    return createdTask;
+    return await this.taskModel.create(createTaskDto);
   }
 
   async findAll(): Promise<Task[]> {
@@ -24,9 +23,6 @@ export class TasksService {
   }
 
   async delete(id: string) {
-    const deletedTask = await this.taskModel
-      .findByIdAndRemove({ _id: id })
-      .exec();
-    return deletedTask;
+    return await this.taskModel.findByIdAndRemove({ _id: id }).exec();
   }
 }
